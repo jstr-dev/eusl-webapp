@@ -1,0 +1,1 @@
+fixtures -> gameweek for playoffs is incorrect. original script does it incorrectly as it checks for 'f' before 'sf'. see script.
