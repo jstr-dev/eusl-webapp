@@ -7,15 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class GameStatistics extends Model
 {
-    public function game(): BelongsTo {
+    public function getGame(): BelongsTo {
         return $this->belongsTo(Game::class);
     }
 
-    public function player(): BelongsTo {
+    public function getPlayer(): BelongsTo {
         return $this->belongsTo(Player::class);
     }
 
-    public function team(): BelongsTo {
+    public function getTeam(): BelongsTo {
         return $this->belongsTo(Team::class);
     }
 }

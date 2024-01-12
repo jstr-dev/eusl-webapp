@@ -7,11 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Game extends Model
 {
-    public function fixture(): BelongsTo {
+    public function getFixture(): BelongsTo {
         return $this->belongsTo(Fixture::class);
     }
 
-    public function winner(): BelongsTo {
+    public function getWinner(): BelongsTo {
         return $this->belongsTo(Team::class, 'winner_id');
     }
 }
