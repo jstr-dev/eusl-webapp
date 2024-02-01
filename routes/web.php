@@ -29,7 +29,7 @@ use App\Http\Controllers\ProfileController;
 
 Route::get("/", function() {
     return Inertia::render("Index");
-});
+})->name('home');
 
 // Teams
 Route::controller(TeamController::class)->group(function() {

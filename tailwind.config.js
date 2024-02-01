@@ -16,6 +16,10 @@ module.exports = {
   ],
   prefix: "",
   theme: {
+    fontFamily: {
+      'opensans': ['"Open Sans"', 'sans-serif']
+    },
+
     container: {
       center: true,
       padding: "2rem",
@@ -25,6 +29,7 @@ module.exports = {
     },
     extend: {
       colors: {
+        euslred: "#E62129",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",

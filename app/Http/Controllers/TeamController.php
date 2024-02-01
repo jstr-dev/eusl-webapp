@@ -17,7 +17,7 @@ class TeamController extends Controller
             'teams' => Team::all()
         ]);
     }
-
+    
     /**
      * Display the specified resource.
      */
