@@ -5,18 +5,18 @@ import NavLink from './NavLink';
 export default function NavBar() {
     return (
         <div>
-            <nav className="bg-neutral-900 border-gray-200 dark:bg-gray-900">
+            <nav className="bg-gray-900">
                 <div className="flex flex-wrap justify-between items-center mx-auto max-w-7xl py-3 px-2">
                     <Link href="/">
-                        <ApplicationLogo className="block h-8 w-auto fill-current text-gray-800"/>
+                        <ApplicationLogo/>
                     </Link>
                 </div>
             </nav>
 
-            <nav className="bg-neutral-100 dark:bg-gray-700">
+            <nav className="bg-gray-800">
                 <div className="max-w-7xl mx-auto">
                     <div className="flex items-center">
-                        <ul className="flex font-opensans flex-row font-semibold mt-0 space-x-4 text-sm text-neutral-600">
+                        <ul className="flex font-opensans flex-row font-semibold mt-0 space-x-5 text-xs text-neutral-600">
                             <NavLink href="/" active={route().current('home')}>
                                 Home
                             </NavLink>
