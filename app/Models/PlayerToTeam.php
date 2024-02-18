@@ -9,11 +9,13 @@ class PlayerToTeam extends Model
 {
     protected $table = "player_to_team";
 
-    public function getTeam(): BelongsTo {
+    public function team(): BelongsTo
+    {
         return $this->belongsTo(Team::class);
     }
 
-    public function getPlayer(): BelongsTo {
+    public function player(): BelongsTo
+    {
         return $this->belongsTo(Player::class);
     }
 }

@@ -1,12 +1,12 @@
-import { useState, PropsWithChildren, ReactNode } from 'react';
+import {useState, PropsWithChildren, ReactNode} from 'react';
 import ApplicationLogo from '@/Components/ApplicationLogo';
-import Dropdown from '@/Components/Dropdown';
+import Dropdown2 from '@/Components/Dropdown2';
 import NavLink from '@/Components/NavLink';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink';
-import { Link } from '@inertiajs/react';
-import { User } from '@/types';
+import {Link} from '@inertiajs/react';
+import {User} from '@/types';
 
-export default function Authenticated({ user, header, children }: PropsWithChildren<{ user: User, header?: ReactNode }>) {
+export default function Authenticated({user, header, children}: PropsWithChildren<{ user: User, header?: ReactNode }>) {
     const [showingNavigationDropdown, setShowingNavigationDropdown] = useState(false);
 
     return (
@@ -17,7 +17,7 @@ export default function Authenticated({ user, header, children }: PropsWithChild
                         <div className="flex">
                             <div className="shrink-0 flex items-center">
                                 <Link href="/">
-                                    <ApplicationLogo className="block h-9 w-auto fill-current text-gray-800" />
+                                    <ApplicationLogo className="block h-9 w-auto fill-current text-gray-800"/>
                                 </Link>
                             </div>
 
@@ -30,8 +30,8 @@ export default function Authenticated({ user, header, children }: PropsWithChild
 
                         <div className="hidden sm:flex sm:items-center sm:ms-6">
                             <div className="ms-3 relative">
-                                <Dropdown>
-                                    <Dropdown.Trigger>
+                                <Dropdown2>
+                                    <Dropdown2.Trigger>
                                         <span className="inline-flex rounded-md">
                                             <button
                                                 type="button"
@@ -53,15 +53,15 @@ export default function Authenticated({ user, header, children }: PropsWithChild
                                                 </svg>
                                             </button>
                                         </span>
-                                    </Dropdown.Trigger>
+                                    </Dropdown2.Trigger>
 
-                                    <Dropdown.Content>
-                                        <Dropdown.Link href={route('profile.edit')}>Profile</Dropdown.Link>
-                                        <Dropdown.Link href={route('logout')} method="post" as="button">
+                                    <Dropdown2.Content>
+                                        <Dropdown2.Link href={route('profile.edit')}>Profile</Dropdown2.Link>
+                                        <Dropdown2.Link href={route('logout')} method="post" as="button">
                                             Log Out
-                                        </Dropdown.Link>
-                                    </Dropdown.Content>
-                                </Dropdown>
+                                        </Dropdown2.Link>
+                                    </Dropdown2.Content>
+                                </Dropdown2>
                             </div>
                         </div>
 

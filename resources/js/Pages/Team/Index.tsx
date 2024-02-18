@@ -1,20 +1,33 @@
 import MainLayout from '@/Layouts/MainLayout';
-import {PropsWithChildren} from 'react';
-import { Team, columns } from "@/Components/Team/Columns"
-import { DataTable } from "@/Components/Team/DataTable"
+import {Component, PropsWithChildren} from 'react';
+import {Team, columns} from "@/Components/Team/Columns"
+import {DataTable} from "@/Components/Team/DataTable"
 import {Link, router, Head} from '@inertiajs/react';
+import TableFilters from "@/Components/Team/TableFilters";
 
 function buttonOnClick() {
     router.reload({only: ['teams']});
 }
 
-export default function Home({teams}: PropsWithChildren<{ teams: Array<any> }>) {
-    return (
-        <MainLayout header="Teams">
-            <Head title="Teams" />
-            <DataTable columns={columns} data={teams} />
+export default function Home({teams, seasons, current_season, current_division}: PropsWithChildren<{
+    teams: Array<any>,
+    seasons: Array<any>,
+    current_season: number,
+    current_division: number
+}>) {
+    let filters: string[] = ['season', 'division']
 
-            <Link preserveScroll href="/teams?page=2" only={['teams']}>Page 2 test</Link>
+    return (
+        <MainLayout>
+            <Head title="Teams"/>
+
+            <div className='content'>
+                <TableFilters filters={filters} seasons={seasons} current_season={current_season} current_division={current_division}/>
+            </div>
+
+            <div className='content pb-0'>
+                <DataTable columns={columns} data={teams}/>
+            </div>
         </MainLayout>
     );
 }

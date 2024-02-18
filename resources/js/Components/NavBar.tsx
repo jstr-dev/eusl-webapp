@@ -1,11 +1,11 @@
-import { Link } from '@inertiajs/react';
+import {Link} from '@inertiajs/react';
 import ApplicationLogo from './ApplicationLogo';
 import NavLink from './NavLink';
 
 export default function NavBar() {
     return (
         <div>
-            <nav className="bg-gray-900">
+            <nav className="bg-neutral-900">
                 <div className="flex flex-wrap justify-between items-center mx-auto max-w-7xl py-3 px-2">
                     <Link href="/">
                         <ApplicationLogo/>
@@ -13,7 +13,7 @@ export default function NavBar() {
                 </div>
             </nav>
 
-            <nav className="bg-gray-800">
+            <nav className="bg-neutral-850">
                 <div className="max-w-7xl mx-auto">
                     <div className="flex items-center">
                         <ul className="flex font-opensans flex-row font-semibold mt-0 space-x-5 text-xs text-neutral-600">
