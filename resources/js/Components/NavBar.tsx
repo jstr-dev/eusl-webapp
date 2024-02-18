@@ -1,15 +1,29 @@
 import {Link} from '@inertiajs/react';
 import ApplicationLogo from './ApplicationLogo';
 import NavLink from './NavLink';
+import {Input} from "@/Components/ui/input";
+import React from "react";
 
 export default function NavBar() {
     return (
         <div>
             <nav className="bg-neutral-900">
-                <div className="flex flex-wrap justify-between items-center mx-auto max-w-7xl py-3 px-2">
-                    <Link href="/">
-                        <ApplicationLogo/>
-                    </Link>
+                <div className="flex justify-between items-center mx-auto max-w-7xl py-3 px-2">
+                    <div className='flex gap-10 items-center'>
+                        <Link href="/">
+                            <ApplicationLogo/>
+                        </Link>
+
+                        <ul className="flex flex-row font-semibold text-white mt-0 gap-6 space-x-5 text-s">
+                            <a>League</a>
+                            <a>TSR</a>
+                            <a>PUGs</a>
+                            <a>News</a>
+                            <a>More</a>
+                        </ul>
+                    </div>
+
+                    <Input type="search" onKeyDown='' placeholder="Search"/>
                 </div>
             </nav>
 

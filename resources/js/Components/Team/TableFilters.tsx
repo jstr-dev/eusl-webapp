@@ -43,7 +43,7 @@ export default function TableFilters({filters, seasons, current_season, current_
                         <SelectContent>
                             {uniqueNumbers.map((number: number) => (
                                 <SelectItem
-                                    value={String(number)}>{"Season " + number}</SelectItem>
+                                    value={String(number)} key={number}>{"Season " + number}</SelectItem>
                             ))}
                         </SelectContent>
                     </Select>
@@ -56,8 +56,8 @@ export default function TableFilters({filters, seasons, current_season, current_
                         </SelectTrigger>
                         <SelectContent>
                             {uniqueDivisions.map((division: string) => (
-                                <SelectItem
-                                    value={Object.keys(divisionMap).find(key => divisionMap[key] === division)}>{division}</SelectItem>
+                                <SelectItem key={division}
+                                            value={Object.keys(divisionMap).find(key => divisionMap[key] === division)}>{division}</SelectItem>
                             ))}
                         </SelectContent>
                     </Select>

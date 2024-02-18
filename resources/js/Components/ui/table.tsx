@@ -75,7 +75,8 @@ const TableHead = React.forwardRef<
     <th
         ref={ref}
         className={cn(
-            "pb-4 hover:cursor-default text-neutral-300 h-2 px-4 text-left align-middle last:text-right [&:has([role=checkbox])]:pr-0",
+            "pb-4 hover:cursor-default text-neutral-300 h-2 px-4 text-left align-middle first:!text-left last:text-right" +
+            " [&:has([role=checkbox])]:pr-0",
             className
         )}
         {...props}

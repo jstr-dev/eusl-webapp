@@ -8,23 +8,29 @@ import {
 import {
     Table,
     TableBody,
-    TableCell,
+    TableCell, TableFooter,
     TableHead,
     TableHeader,
     TableRow,
-} from "@/Components/Table/table"
+} from "@/Components/ui/table"
 
 import * as React from "react";
+import {
+    Pagination,
+    PaginationContent,
+    PaginationEllipsis,
+    PaginationItem,
+    PaginationLink,
+    PaginationNext,
+    PaginationPrevious
+} from "@/Components/ui/pagination";
 
 interface DataTableProps<TData, TValue> {
     columns: ColumnDef<TData, TValue>[]
     data: TData[]
 }
 
-export function DataTable<TData, TValue>({
-                                             columns,
-                                             data,
-                                         }: DataTableProps<TData, TValue>) {
+export function DataTable<TData, TValue>({columns, data}: DataTableProps<TData, TValue>) {
     const table = useReactTable({
         data,
         columns,
@@ -55,10 +61,7 @@ export function DataTable<TData, TValue>({
                 <TableBody>
                     {table.getRowModel().rows?.length ? (
                         table.getRowModel().rows.map((row) => (
-                            <TableRow
-                                key={row.id}
-                                data-state={row.getIsSelected() && "selected"}
-                            >
+                            <TableRow key={row.id} data-state={row.getIsSelected() && "selected"}>
                                 {row.getVisibleCells().map((cell) => (
                                     <TableCell key={cell.id}>
                                         {flexRender(cell.column.columnDef.cell, cell.getContext())}
@@ -68,13 +71,30 @@ export function DataTable<TData, TValue>({
                         ))
                     ) : (
                         <TableRow>
-                            <TableCell colSpan={columns.length}
-                                       className="!text-center !bg-neutral-900 !cursor-auto h-10 text-center">
+                            <TableCell colSpan={columns.length} className="!text-center !bg-neutral-900 !cursor-auto h-10 text-center">
                                 No results.
                             </TableCell>
                         </TableRow>
                     )}
                 </TableBody>
+                {/*<TableFooter>*/}
+                {/*    <Pagination>*/}
+                {/*        <PaginationContent>*/}
+                {/*            <PaginationItem>*/}
+                {/*                <PaginationPrevious href="#"/>*/}
+                {/*            </PaginationItem>*/}
+                {/*            <PaginationItem>*/}
+                {/*                <PaginationLink href="#">1</PaginationLink>*/}
+                {/*            </PaginationItem>*/}
+                {/*            <PaginationItem>*/}
+                {/*                <PaginationEllipsis/>*/}
+                {/*            </PaginationItem>*/}
+                {/*            <PaginationItem>*/}
+                {/*                <PaginationNext href="#"/>*/}
+                {/*            </PaginationItem>*/}
+                {/*        </PaginationContent>*/}
+                {/*    </Pagination>*/}
+                {/*</TableFooter>*/}
             </Table>
         </div>
     )

@@ -21,28 +21,24 @@ class TeamController extends Controller
     {
         $page = (int) $request->get('page', 1);
         $per_page = (int) $request->get('per_page', 15);
-
         $seasons = Cache::remember('seasons', 3600, fn () => (Season::query()->orderBy('number', 'desc')->orderBy('division')->get()));
         $current_season = (int) $request->get('season', $seasons[0]?->number);
         $current_division = (int) $request->get('division', 1);
         $season_id = Season::where('number', $current_season)->where('division', $current_division)->pluck('id')->first();
-
         $search = $request->get('search');
+        $teams_query = Team::query();
 
-        $query = Team::query();
         if ($search) {
-            $query->where('name', 'like', '%' . $search . '%')->skip(($page - 1) * $per_page)->take($per_page);
+            $teams_query->where('name', 'like', '%' . $search . '%')->skip(($page - 1) * $per_page)->take($per_page);
         } else {
-            $query->join('player_to_team', 'player_to_team.team_id', '=', 'teams.id')
+            $teams_query->join('player_to_team', 'player_to_team.team_id', '=', 'teams.id')
                 ->where('player_to_team.season_id', '=', $season_id)
                 ->groupBy('player_to_team.team_id')
                 ->select(['team_id', 'name', 'short']);
         }
 
-        $teams = $query->get();
-
         return Inertia::render("Team/Index", [
-            'teams' => $teams,
+            'teams' => $teams_query->get(),
             'seasons' => $seasons,
             'current_season' => $current_season,
             'current_division' => $current_division

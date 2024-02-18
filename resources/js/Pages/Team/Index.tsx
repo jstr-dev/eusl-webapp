@@ -1,13 +1,9 @@
 import MainLayout from '@/Layouts/MainLayout';
 import {Component, PropsWithChildren} from 'react';
 import {Team, columns} from "@/Components/Team/Columns"
-import {DataTable} from "@/Components/Team/DataTable"
+import {DataTable} from "@/Components/DataTable"
 import {Link, router, Head} from '@inertiajs/react';
 import TableFilters from "@/Components/Team/TableFilters";
-
-function buttonOnClick() {
-    router.reload({only: ['teams']});
-}
 
 export default function Home({teams, seasons, current_season, current_division}: PropsWithChildren<{
     teams: Array<any>,
