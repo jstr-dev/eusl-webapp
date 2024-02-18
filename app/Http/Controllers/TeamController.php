@@ -13,27 +13,35 @@ class TeamController extends Controller
 {
     /**
      * Display a listing of the resource.
+     *
      * @param Request $request
      * @return Response
      */
     public function index(Request $request)
     {
-        $page = (int)$request->get('page', 1);
-        $per_page = (int)$request->get('per_page', 15);
+        $page = (int) $request->get('page', 1);
+        $per_page = (int) $request->get('per_page', 15);
 
         $seasons = Cache::remember('seasons', 3600, fn () => (Season::query()->orderBy('number', 'desc')->orderBy('division')->get()));
-        $current_season = (int)$request->get('season', $seasons[0]?->number);
-        $current_division = (int)$request->get('division', 1);
+        $current_season = (int) $request->get('season', $seasons[0]?->number);
+        $current_division = (int) $request->get('division', 1);
         $season_id = Season::where('number', $current_season)->where('division', $current_division)->pluck('id')->first();
 
-        $teams = Team::join('player_to_team', 'player_to_team.team_id', '=', 'teams.id')
-            ->where('player_to_team.season_id', '=', $season_id)
-            ->groupBy('player_to_team.team_id')
-            ->select(['team_id', 'name', 'short'])
-            ->get();
+        $search = $request->get('search');
+
+        $query = Team::query();
+        if ($search) {
+            $query->where('name', 'like', '%' . $search . '%')->skip(($page - 1) * $per_page)->take($per_page);
+        } else {
+            $query->join('player_to_team', 'player_to_team.team_id', '=', 'teams.id')
+                ->where('player_to_team.season_id', '=', $season_id)
+                ->groupBy('player_to_team.team_id')
+                ->select(['team_id', 'name', 'short']);
+        }
+
+        $teams = $query->get();
 
         return Inertia::render("Team/Index", [
-//            'teams' => Team::query()->where('')->skip(($page - 1) * $per_page)->take($per_page)->get(),
             'teams' => $teams,
             'seasons' => $seasons,
             'current_season' => $current_season,
@@ -43,6 +51,7 @@ class TeamController extends Controller
 
     /**
      * Display the specified resource.
+     *
      * @param Team $team
      * @return Response
      */

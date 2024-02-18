@@ -7,6 +7,7 @@ import {
     SelectValue,
 } from "@/Components/ui/select"
 import {router} from "@inertiajs/react";
+import Search from "@/Components/Search";
 
 const seasonChange = (season: string) => {
     router.reload({only: ['teams'], data: {season: season}})
@@ -32,7 +33,7 @@ export default function TableFilters({filters, seasons, current_season, current_
     }
 
     return (
-        <div className='flex'>
+        <div className='flex justify-between'>
             <div className='flex gap-4'>
                 {filters.includes('season') &&
                     <Select onValueChange={(season: string) => seasonChange(season)}>
@@ -61,6 +62,10 @@ export default function TableFilters({filters, seasons, current_season, current_
                         </SelectContent>
                     </Select>
                 }
+            </div>
+
+            <div>
+                <Search/>
             </div>
         </div>
     );
