@@ -15,15 +15,7 @@ import {
 } from "@/Components/ui/table"
 
 import * as React from "react";
-import {
-    Pagination,
-    PaginationContent,
-    PaginationEllipsis,
-    PaginationItem,
-    PaginationLink,
-    PaginationNext,
-    PaginationPrevious
-} from "@/Components/ui/pagination";
+import Pagination from "@/Components/Pagination";
 
 interface DataTableProps<TData, TValue> {
     columns: ColumnDef<TData, TValue>[]
@@ -77,24 +69,6 @@ export function DataTable<TData, TValue>({columns, data}: DataTableProps<TData, 
                         </TableRow>
                     )}
                 </TableBody>
-                {/*<TableFooter>*/}
-                {/*    <Pagination>*/}
-                {/*        <PaginationContent>*/}
-                {/*            <PaginationItem>*/}
-                {/*                <PaginationPrevious href="#"/>*/}
-                {/*            </PaginationItem>*/}
-                {/*            <PaginationItem>*/}
-                {/*                <PaginationLink href="#">1</PaginationLink>*/}
-                {/*            </PaginationItem>*/}
-                {/*            <PaginationItem>*/}
-                {/*                <PaginationEllipsis/>*/}
-                {/*            </PaginationItem>*/}
-                {/*            <PaginationItem>*/}
-                {/*                <PaginationNext href="#"/>*/}
-                {/*            </PaginationItem>*/}
-                {/*        </PaginationContent>*/}
-                {/*    </Pagination>*/}
-                {/*</TableFooter>*/}
             </Table>
         </div>
     )

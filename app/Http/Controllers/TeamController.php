@@ -29,19 +29,25 @@ class TeamController extends Controller
         $teams_query = Team::query();
 
         if ($search) {
-            $teams_query->where('name', 'like', '%' . $search . '%')->skip(($page - 1) * $per_page)->take($per_page);
+            $teams_query = $teams_query->where('name', 'like', '%' . $search . '%');
+            $teams_query_count = $teams_query->count();
+            $teams_query = $teams_query->skip(($page - 1) * $per_page)->take($per_page)->select(['id', 'name', 'short'])->get();
         } else {
-            $teams_query->join('player_to_team', 'player_to_team.team_id', '=', 'teams.id')
+            $teams_query = $teams_query->join('player_to_team', 'player_to_team.team_id', '=', 'teams.id')
                 ->where('player_to_team.season_id', '=', $season_id)
                 ->groupBy('player_to_team.team_id')
-                ->select(['team_id', 'name', 'short']);
+                ->select(['team_id', 'name', 'short'])->get();
+            $teams_query_count = $teams_query->count();
         }
 
         return Inertia::render("Team/Index", [
-            'teams' => $teams_query->get(),
+            'teams' => $teams_query,
             'seasons' => $seasons,
             'current_season' => $current_season,
-            'current_division' => $current_division
+            'current_division' => $current_division,
+            'page' => $page,
+            'total' => $teams_query_count,
+            'max_pages' => ceil($teams_query_count / $per_page)
         ]);
     }
 

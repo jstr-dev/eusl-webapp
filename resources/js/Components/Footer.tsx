@@ -4,8 +4,8 @@ export default function Footer() {
     return (
         <footer className="py-10 px-4 bg-neutral-900 sticky top-[100vh] text-white">
             <div className='container'>
-                <div className='flex flex-col gap-4'>
-                    <div className='flex gap-20 items-start justify-center'>
+                <div className='flex flex-col md:gap-4'>
+                    <div className='flex flex-col md:flex-row gap-8 md:gap-20 items-start justify-center'>
                         <ApplicationLogo/>
 
                         <div className='flex flex-col gap-1'>
@@ -45,10 +45,10 @@ export default function Footer() {
 
                     <hr className={'border-neutral-800 mt-5 mb-5'}/>
 
-                    <div className='flex gap-3 justify-center'>
+                    <div className='flex flex-col md:flex-row gap-3 justify-center text-center md:text-left'>
                         <span className='text-sm text-neutral-400'>© 2024 <span
                             className='font-semibold'>European Slapshot League</span></span>
-                        <span className='text-sm'>&#x2022;</span>
+                        <span className='hidden md:block text-sm'>&#x2022;</span>
                         <span className={'text-sm text-neutral-400'}>Created by <a
                             className={'text-neutral-200 font-semibold'} href={'https://www.github.com/jstr-dev'}>jstr-dev</a></span>
                     </div>

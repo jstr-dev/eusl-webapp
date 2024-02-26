@@ -10,11 +10,11 @@ import {router} from "@inertiajs/react";
 import Search from "@/Components/Search";
 
 const seasonChange = (season: string) => {
-    router.reload({only: ['teams'], data: {season: season}})
+    router.reload({only: ['teams', 'page', 'total', 'max_pages'], data: {season: season, page: 1}})
 }
 
 const divisionChange = (division: string) => {
-    router.reload({only: ['teams'], data: {division: division}})
+    router.reload({only: ['teams', 'page', 'total', 'max_pages'], data: {division: division, page: 1}})
 }
 
 export default function TableFilters({filters, seasons, current_season, current_division}: {
@@ -25,7 +25,7 @@ export default function TableFilters({filters, seasons, current_season, current_
 }) {
     const uniqueNumbers: number[] = Array.from(new Set(seasons.map(season => season.number)));
     const uniqueDivisions: string[] = Array.from(new Set(seasons.map(season => season.division)));
-    const divisionMap = {
+    const divisionMap: any = {
         1: 'Professional',
         2: 'Challenger',
         3: 'Intermediate',
@@ -33,11 +33,11 @@ export default function TableFilters({filters, seasons, current_season, current_
     }
 
     return (
-        <div className='flex justify-between'>
-            <div className='flex gap-4'>
+        <div className='flex gap-4 flex-col md:flex-row justify-between'>
+            <div className='flex flex-col min-[400px]:flex-row gap-4'>
                 {filters.includes('season') &&
                     <Select onValueChange={(season: string) => seasonChange(season)}>
-                        <SelectTrigger className="w-[180px]">
+                        <SelectTrigger className="w-full md:w-[180px]">
                             <SelectValue placeholder={"Season " + current_season}/>
                         </SelectTrigger>
                         <SelectContent>
@@ -51,13 +51,12 @@ export default function TableFilters({filters, seasons, current_season, current_
 
                 {filters.includes('division') &&
                     <Select onValueChange={(division: string) => divisionChange(division)}>
-                        <SelectTrigger className="w-[180px]">
+                        <SelectTrigger className="w-full md:w-[180px]">
                             <SelectValue placeholder={divisionMap[current_division]}/>
                         </SelectTrigger>
                         <SelectContent>
                             {uniqueDivisions.map((division: string) => (
-                                <SelectItem key={division}
-                                            value={Object.keys(divisionMap).find(key => divisionMap[key] === division)}>{division}</SelectItem>
+                                <SelectItem key={division} value={Object.keys(divisionMap).find(key => divisionMap[key] === division) ?? ''}>{division}</SelectItem>
                             ))}
                         </SelectContent>
                     </Select>
@@ -65,7 +64,9 @@ export default function TableFilters({filters, seasons, current_season, current_
             </div>
 
             <div>
-                <Search/>
+                {filters.includes('search') &&
+                    <Search/>
+                }
             </div>
         </div>
     );
