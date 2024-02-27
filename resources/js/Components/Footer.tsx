@@ -5,41 +5,43 @@ export default function Footer() {
         <footer className="py-10 px-4 bg-neutral-900 sticky top-[100vh] text-white">
             <div className='container'>
                 <div className='flex flex-col md:gap-4'>
-                    <div className='flex flex-col md:flex-row gap-8 md:gap-20 items-start justify-center'>
+                    <div className='flex flex-col md:flex-row gap-5 md:gap-20 items-center md:items-start justify-center'>
                         <ApplicationLogo/>
 
-                        <div className='flex flex-col gap-1'>
-                            <span className={'font-semibold text-sm text-neutral-400 mb-2'}>Sitemap</span>
-                            <a className={'text-sm text-neutral-200 font-semibold'}
-                               href={'/'}>League</a>
-                            <a className={'text-sm text-neutral-200 font-semibold'}
-                               href={''}>TSR</a>
-                            <a className={'text-sm text-neutral-200 font-semibold'}
-                               href={''}>PUGs</a>
-                            <a className={'text-sm text-neutral-200 font-semibold'}
-                               href={''}>News</a>
-                        </div>
+                        <div className='flex flex-col min-[320px]:flex-row gap-8 md:gap-20 items-start justify-center'>
+                            <div className='flex flex-col gap-1'>
+                                <span className={'font-semibold text-sm text-neutral-400 mb-2'}>Sitemap</span>
+                                <a className={'text-sm text-neutral-200 font-semibold'}
+                                   href={'/'}>League</a>
+                                <a className={'text-sm text-neutral-200 font-semibold'}
+                                   href={''}>TSR</a>
+                                <a className={'text-sm text-neutral-200 font-semibold'}
+                                   href={''}>PUGs</a>
+                                <a className={'text-sm text-neutral-200 font-semibold'}
+                                   href={''}>News</a>
+                            </div>
 
-                        <div className='flex flex-col gap-1'>
-                            <span className={'font-semibold text-sm text-neutral-400 mb-2'}>Support</span>
-                            <a className={'text-sm text-neutral-200 font-semibold'}
-                               href={'https://eusl.notion.site/European-Slapshot-League-f9ac4030f7ec4782bd92e4d02d289fc1'}>Notion</a>
-                            <a className={'text-sm text-neutral-200 font-semibold'}
-                               href={'https://eusl.notion.site/c284f34b4fdf4eac8cc54ad332c84696?v=c8559707b53f4982915de3a023cb8e02'}>Rules</a>
-                            <a className={'text-sm text-neutral-200 font-semibold'}
-                               href={''}>FAQ</a>
-                        </div>
+                            <div className='flex flex-col gap-1'>
+                                <span className={'font-semibold text-sm text-neutral-400 mb-2'}>Support</span>
+                                <a className={'text-sm text-neutral-200 font-semibold'}
+                                   href={'https://eusl.notion.site/European-Slapshot-League-f9ac4030f7ec4782bd92e4d02d289fc1'}>Notion</a>
+                                <a className={'text-sm text-neutral-200 font-semibold'}
+                                   href={'https://eusl.notion.site/c284f34b4fdf4eac8cc54ad332c84696?v=c8559707b53f4982915de3a023cb8e02'}>Rules</a>
+                                <a className={'text-sm text-neutral-200 font-semibold'}
+                                   href={''}>FAQ</a>
+                            </div>
 
-                        <div className='flex flex-col gap-1'>
-                            <span className={'font-semibold text-sm text-neutral-400 mb-2'}>Socials</span>
-                            <a className={'text-sm text-neutral-200 font-semibold'}
-                               href={''}>YouTube</a>
-                            <a className={'text-sm text-neutral-200 font-semibold'}
-                               href={''}>Twitch</a>
-                            <a className={'text-sm text-neutral-200 font-semibold'}
-                               href={''}>Discord</a>
-                            <a className={'text-sm text-neutral-200 font-semibold'}
-                               href={''}>X</a>
+                            <div className='flex flex-col gap-1'>
+                                <span className={'font-semibold text-sm text-neutral-400 mb-2'}>Socials</span>
+                                <a className={'text-sm text-neutral-200 font-semibold'}
+                                   href={''}>YouTube</a>
+                                <a className={'text-sm text-neutral-200 font-semibold'}
+                                   href={''}>Twitch</a>
+                                <a className={'text-sm text-neutral-200 font-semibold'}
+                                   href={''}>Discord</a>
+                                <a className={'text-sm text-neutral-200 font-semibold'}
+                                   href={''}>X</a>
+                            </div>
                         </div>
                     </div>
 

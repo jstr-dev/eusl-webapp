@@ -45,6 +45,14 @@ function MobileNavOption({name, route}: {name: string, route: string}) {
     );
 }
 
+$(window).on('resize', function() {
+    const width: number|undefined = $(window).width();
+    if (width != null && width > 768) {
+        document.getElementById('navbar-mobile')?.classList.add('invisible');
+        document.body.classList.remove('overflow-hidden');
+    }
+});
+
 export default function NavBar() {
     return (<>
         <div id="navbar-mobile" className="flex w-screen h-screen fixed z-20 bg-neutral-900 text-white pt-20 pl-5 pr-5 pb-5 invisible">
@@ -58,6 +66,7 @@ export default function NavBar() {
                     <MobileNavOption name='Transfers' route='/'/>
                     <MobileNavOption name='Statistics' route='/'/>
                 </MobileNavSection>
+
                 <MobileNavSection name='Testing'>
                     <MobileNavOption name='Home' route='/'/>
                     <MobileNavOption name='Standings' route='/'/>
@@ -67,6 +76,7 @@ export default function NavBar() {
                     <MobileNavOption name='Transfers' route='/'/>
                     <MobileNavOption name='Statistics' route='/'/>
                 </MobileNavSection>
+
                 <MobileNavSection name='Testing 2'>
                     <MobileNavOption name='Home' route='/'/>
                     <MobileNavOption name='Standings' route='/'/>
@@ -127,7 +137,7 @@ export default function NavBar() {
                             Teams
                         </NavLink>
 
-                        <NavLink href="/" active={route().current('/')}>
+                        <NavLink href={route('players')} active={route().current('players')}>
                             Players
                         </NavLink>
 

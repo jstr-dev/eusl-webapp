@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PlayerController;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
@@ -35,6 +36,12 @@ Route::get("/", function() {
 Route::controller(TeamController::class)->group(function() {
     Route::get('teams', 'index')->name('teams');
     Route::get('team/{team}', 'show')->whereNumber('team');
+});
+
+// Players
+Route::controller(PlayerController::class)->group(function() {
+    Route::get('players', 'index')->name('players');
+    Route::get('player/{player}', 'show')->whereNumber('player');
 });
 
 // Fixtures

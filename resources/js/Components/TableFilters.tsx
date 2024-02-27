@@ -9,19 +9,20 @@ import {
 import {router} from "@inertiajs/react";
 import Search from "@/Components/Search";
 
-const seasonChange = (season: string) => {
-    router.reload({only: ['teams', 'page', 'total', 'max_pages'], data: {season: season, page: 1}})
+const seasonChange = (season: string, key: string) => {
+    router.reload({only: [key, 'page', 'total', 'max_pages'], data: {season: season, page: 1}})
 }
 
-const divisionChange = (division: string) => {
-    router.reload({only: ['teams', 'page', 'total', 'max_pages'], data: {division: division, page: 1}})
+const divisionChange = (division: string, key: string) => {
+    router.reload({only: [key, 'page', 'total', 'max_pages'], data: {division: division, page: 1}})
 }
 
-export default function TableFilters({filters, seasons, current_season, current_division}: {
+export default function TableFilters({filters, seasons, current_season, current_division, collectionKey = 'teams'}: {
     filters: string[],
     seasons: Array<any>,
     current_season: number,
-    current_division: number
+    current_division: number,
+    collectionKey?: string
 }) {
     const uniqueNumbers: number[] = Array.from(new Set(seasons.map(season => season.number)));
     const uniqueDivisions: string[] = Array.from(new Set(seasons.map(season => season.division)));
@@ -36,7 +37,7 @@ export default function TableFilters({filters, seasons, current_season, current_
         <div className='flex gap-4 flex-col md:flex-row justify-between'>
             <div className='flex flex-col min-[400px]:flex-row gap-4'>
                 {filters.includes('season') &&
-                    <Select onValueChange={(season: string) => seasonChange(season)}>
+                    <Select onValueChange={(season: string) => seasonChange(season, collectionKey)}>
                         <SelectTrigger className="w-full md:w-[180px]">
                             <SelectValue placeholder={"Season " + current_season}/>
                         </SelectTrigger>
@@ -50,7 +51,7 @@ export default function TableFilters({filters, seasons, current_season, current_
                 }
 
                 {filters.includes('division') &&
-                    <Select onValueChange={(division: string) => divisionChange(division)}>
+                    <Select onValueChange={(division: string) => divisionChange(division, collectionKey)}>
                         <SelectTrigger className="w-full md:w-[180px]">
                             <SelectValue placeholder={divisionMap[current_division]}/>
                         </SelectTrigger>
@@ -65,7 +66,7 @@ export default function TableFilters({filters, seasons, current_season, current_
 
             <div>
                 {filters.includes('search') &&
-                    <Search/>
+                    <Search placeholder={'Search all ' + collectionKey} collectionKey={collectionKey}/>
                 }
             </div>
         </div>
