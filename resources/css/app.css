@@ -82,3 +82,38 @@
 *, ::before, ::after {
     --tw-shadow: none !important;
 }
+
+.svg-icon.search-icon {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    stroke-width: 2px;
+
+    .search-path {
+        stroke: #FFFFFF;
+    }
+}
+
+.search-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.close-button {
+    position: absolute;
+    top: 50%;
+    right: 5px; /* Adjust the distance from the input */
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    color: #848F91; /* Set the color of the clear button */
+}
+
+.close-x {
+    stroke: white;
+    fill: transparent;
+    stroke-linecap: round;
+    stroke-width: 2;
+}

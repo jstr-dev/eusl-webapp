@@ -17,12 +17,11 @@ class PlayerController extends Controller
         $players = Player::query();
 
         if ($search) {
-            $players = $players->where('name', 'like', '%' . $search . '%')->withWhereHas('teams', function($query) {
-                $query->limit(1);
+            $players = $players->withWhereHas('teams', function ($query) {
                 $query->orderBy('season_id', 'desc');
-            });
+            })->where('name', 'like', '%' . $search . '%');
         } else {
-            $players = $players->withWhereHas('teams', function($query) use ($season_id) {
+            $players = $players->withWhereHas('teams', function ($query) use ($season_id) {
                 $query->where('season_id', '=', $season_id);
             });
         }
@@ -37,7 +36,7 @@ class PlayerController extends Controller
             'current_division' => $current_division,
             'page' => $page,
             'total' => $total,
-            'max_pages' => ceil($total / $per_page)
+            'max_pages' => ceil($total / $per_page),
         ]);
     }
 }
