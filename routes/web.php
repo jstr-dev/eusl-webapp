@@ -7,6 +7,7 @@ use Illuminate\Foundation\Application;
 use App\Http\Controllers\TeamController;
 use App\Http\Controllers\FixtureController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\StandingsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,25 +29,29 @@ use App\Http\Controllers\ProfileController;
     ]);
 });*/
 
-Route::get("/", function() {
+Route::get("/", function () {
     return Inertia::render("Index");
 })->name('home');
 
 // Teams
-Route::controller(TeamController::class)->group(function() {
+Route::controller(TeamController::class)->group(function () {
     Route::get('teams', 'index')->name('teams');
     Route::get('team/{team}', 'show')->whereNumber('team');
 });
 
 // Players
-Route::controller(PlayerController::class)->group(function() {
+Route::controller(PlayerController::class)->group(function () {
     Route::get('players', 'index')->name('players');
     Route::get('player/{player}', 'show')->whereNumber('player');
 });
 
 // Fixtures
-Route::get('fixtures', [FixtureController::class,'index']);
-Route::get('fixture/{fixture}', [FixtureController::class, 'show'])->whereNumber('fixture');
+Route::controller(FixtureController::class)->group(function () {
+    Route::get('fixtures', 'index')->name('fixtures');
+    Route::get('fixture/{fixture}', 'show')->whereNumber('fixture');
+});
+
+Route::get('/standings', [StandingsController::class, 'index'])->name('standings');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -54,4 +59,4 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

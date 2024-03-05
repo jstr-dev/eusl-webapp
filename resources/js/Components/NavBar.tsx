@@ -26,10 +26,11 @@ const sectionClick = (id: string) => {
     }
 }
 
-function MobileNavSection({children, name}: { children: React.ReactNode, name: string}) {
+function MobileNavSection({children, name}: { children: React.ReactNode, name: string }) {
     return (
         <div className="flex flex-col">
-            <div className="text-xl font-bold hover:cursor-pointer hover:text-neutral-300" onClick={() => sectionClick("section-" + name.replace(' ', '-').toLowerCase())}>{name}</div>
+            <div className="text-xl font-bold hover:cursor-pointer hover:text-neutral-300"
+                 onClick={() => sectionClick("section-" + name.replace(' ', '-').toLowerCase())}>{name}</div>
             <div className='flex-col gap-2' id={"section-" + name.replace(' ', '-').toLowerCase()} style={{'display': 'none'}}>
                 {children}
             </div>
@@ -37,7 +38,7 @@ function MobileNavSection({children, name}: { children: React.ReactNode, name: s
     );
 }
 
-function MobileNavOption({name, route}: {name: string, route: string}) {
+function MobileNavOption({name, route}: { name: string, route: string }) {
     return (
         <a href={route} className="text-md font-medium first:pt-4 pl-5 hover:cursor-pointer hover:text-neutral-300">
             {name}
@@ -45,8 +46,8 @@ function MobileNavOption({name, route}: {name: string, route: string}) {
     );
 }
 
-$(window).on('resize', function() {
-    const width: number|undefined = $(window).width();
+$(window).on('resize', function () {
+    const width: number | undefined = $(window).width();
     if (width != null && width > 768) {
         document.getElementById('navbar-mobile')?.classList.add('invisible');
         document.body.classList.remove('overflow-hidden');
@@ -125,7 +126,7 @@ export default function NavBar() {
                             Home
                         </NavLink>
 
-                        <NavLink href="/" active={route().current('/')}>
+                        <NavLink href={route('standings')} active={route().current('standings')}>
                             Standings
                         </NavLink>
 

@@ -7,7 +7,7 @@ import TableFilters from "@/Components/TableFilters";
 import Pagination from "@/Components/Pagination";
 import * as React from "react";
 
-export default function Home({teams, seasons, current_season, current_division, page, max_pages, total}: PropsWithChildren<{
+export default function Teams({teams, seasons, current_season, current_division, page, max_pages, total}: PropsWithChildren<{
     teams: Array<any>,
     seasons: Array<any>,
     current_season: number,
@@ -23,7 +23,8 @@ export default function Home({teams, seasons, current_season, current_division, 
             <Head title="Teams"/>
 
             <div className='content'>
-                <TableFilters collectionKey='teams' filters={filters} seasons={seasons} current_season={current_season} current_division={current_division}/>
+                <TableFilters collectionKey='teams' filters={filters} seasons={seasons} current_season={current_season}
+                              current_division={current_division}/>
             </div>
 
             <div className='content pb-0'>

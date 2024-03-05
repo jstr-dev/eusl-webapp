@@ -1,5 +1,5 @@
 import {Input} from "@/Components/ui/input";
-import {router} from "@inertiajs/react";
+import {router, usePage} from "@inertiajs/react";
 import React from "react";
 import {cn} from "@/lib/utils";
 
@@ -15,9 +15,9 @@ const searchButton = (collectionKey: string) => {
 }
 
 const clearSearch = (collectionKey: string) => {
-    router.reload({only: [collectionKey, 'page', 'max_pages', 'total'], data: {page: 1, search: null}});
     $('#search-input').val('');
     updateButton();
+    router.reload({only: [collectionKey, 'page', 'max_pages', 'total'], data: {page: 1, search: null}});
 }
 
 const updateButton = () => {
@@ -28,17 +28,25 @@ const updateButton = () => {
     }
 }
 
+$(document).ready(function () {
+    updateButton();
+});
+
 function Search({placeholder = 'Search all teams', collectionKey = 'teams'}: { placeholder?: string, collectionKey?: string }) {
+    let page = usePage();
+    let props = page.props;
+    let searchQuery: unknown = props.search;
+
     return (
         <div className='flex'>
-            <div className='search-wrapper'>
+            <div className='search-wrapper w-full md:w-[230px]"'>
                 <input
                     id='search-input'
-                    className={"h-10 rounded-l-md bg-neutral-800 pl-3 pr-8 py-2 text-sm placeholder:text-neutral-500 border-none outline-none" +
-                        " w-full" +
-                        " md:w-[250px]"}
+                    className={"h-10 rounded-l-md bg-neutral-800 pl-3 pr-8 py-2 text-sm placeholder:text-neutral-500 border-none outline-none w-full"}
                     onKeyDown={(event) => querySearch(event, collectionKey)}
                     placeholder={placeholder}
+                    onChange={updateButton}
+                    defaultValue={typeof searchQuery === 'string' ? searchQuery : ''}
                 />
 
                 <div className='w-6 fixed close-button hidden'>

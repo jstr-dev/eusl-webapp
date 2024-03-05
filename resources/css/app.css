@@ -89,9 +89,10 @@
     height: 16px;
     stroke-width: 2px;
 
-    .search-path {
-        stroke: #FFFFFF;
-    }
+}
+
+.search-path {
+    stroke: #FFFFFF;
 }
 
 .search-wrapper {
@@ -116,4 +117,12 @@
     fill: transparent;
     stroke-linecap: round;
     stroke-width: 2;
+}
+
+.positionIndicator {
+    position: absolute;
+    top: 50%;
+    left: -15px;
+    width: 5px;
+    height: 5px;
 }

@@ -34,7 +34,7 @@ export default function TableFilters({filters, seasons, current_season, current_
     }
 
     return (
-        <div className='flex gap-4 flex-col md:flex-row justify-between'>
+        <div className={'flex flex-col md:flex-row justify-between' + (filters.includes('search') ? ' gap-4' : '')}>
             <div className='flex flex-col min-[400px]:flex-row gap-4'>
                 {filters.includes('season') &&
                     <Select onValueChange={(season: string) => seasonChange(season, collectionKey)}>

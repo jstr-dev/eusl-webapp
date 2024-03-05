@@ -2,18 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Traits\PaginationTrait;
+use App\Http\Traits\FilterParameters;
 use App\Models\Player;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
 class PlayerController extends Controller
 {
-    use PaginationTrait;
+    use FilterParameters;
 
     public function index(Request $request)
     {
-        [$page, $per_page, $seasons, $current_season, $current_division, $season_id, $search] = $this->getPaginationParameters($request);
+        [$page, $per_page, $search] = $this->getPaginationParameters($request);
+        [$seasons, $current_season, $current_division, $season_id] = $this->getSeasonParameters($request);
         $players = Player::query();
 
         if ($search) {
@@ -36,6 +37,7 @@ class PlayerController extends Controller
             'current_division' => $current_division,
             'page' => $page,
             'total' => $total,
+            'search' => $search,
             'max_pages' => ceil($total / $per_page),
         ]);
     }

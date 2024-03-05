@@ -22,11 +22,24 @@ interface DataTableProps<TData, TValue> {
     data: TData[]
 }
 
-export function DataTable<TData, TValue>({columns, data}: DataTableProps<TData, TValue>) {
+export function DataTable<TData, TValue>({
+                                             columns, data, columnData = {
+        minSize: 1,
+        maxSize: Number.MAX_SAFE_INTEGER,
+        size: 10
+    }
+                                         }: DataTableProps<TData, TValue> & {
+    columnData: { minSize: number, maxSize: number, size: number }
+}) {
     const table = useReactTable({
         data,
         columns,
         getCoreRowModel: getCoreRowModel(),
+        defaultColumn: {
+            minSize: columnData.minSize,
+            maxSize: columnData.maxSize,
+            size: columnData.size
+        },
     })
 
     return (
@@ -55,7 +68,7 @@ export function DataTable<TData, TValue>({columns, data}: DataTableProps<TData, 
                         table.getRowModel().rows.map((row) => (
                             <TableRow key={row.id} data-state={row.getIsSelected() && "selected"}>
                                 {row.getVisibleCells().map((cell) => (
-                                    <TableCell key={cell.id}>
+                                    <TableCell key={cell.id} style={{width: cell.column.getSize() + 'px'}}>
                                         {flexRender(cell.column.columnDef.cell, cell.getContext())}
                                     </TableCell>
                                 ))}
