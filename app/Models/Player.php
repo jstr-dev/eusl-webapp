@@ -11,4 +11,9 @@ class Player extends Model
     {
         return $this->belongsToMany(Team::class, 'player_to_team', 'player_id', 'team_id');
     }
+
+    public function currentTeam(): Team
+    {
+        return $this->teams()->orderBy('season_id')->first();
+    }
 }

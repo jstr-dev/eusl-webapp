@@ -41,4 +41,13 @@ class PlayerController extends Controller
             'max_pages' => ceil($total / $per_page),
         ]);
     }
+
+    public function show(Player $player)
+    {
+        $current_team = $player->currentTeam();
+        return Inertia::render("Player/Show", [
+            'player' => $player,
+            'current_team' => $current_team,
+        ]);
+    }
 }

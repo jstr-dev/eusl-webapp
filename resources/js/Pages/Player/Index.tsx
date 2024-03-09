@@ -6,6 +6,7 @@ import {Head} from '@inertiajs/react';
 import TableFilters from "@/Components/TableFilters";
 import Pagination from "@/Components/Pagination";
 import * as React from "react";
+import ContentPanel from "@/Components/ContentPanel";
 
 export default function Players({players, seasons, current_season, current_division, page, max_pages, total}: PropsWithChildren<{
     players: Array<any>,
@@ -22,12 +23,12 @@ export default function Players({players, seasons, current_season, current_divis
         <MainLayout header={null}>
             <Head title="Players"/>
 
-            <div className='content'>
+            <ContentPanel>
                 <TableFilters collectionKey='players' filters={filters} seasons={seasons} current_season={current_season}
                               current_division={current_division}/>
-            </div>
+            </ContentPanel>
 
-            <div className='content pb-0'>
+            <div className='content pb-0 rounded-lg'>
                 <DataTable columns={columns} data={players}></DataTable>
                 <div>
                     <hr className='border-neutral-800 mt-5 mb-5'/>

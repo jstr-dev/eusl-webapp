@@ -1,11 +1,11 @@
 import MainLayout from '@/Layouts/MainLayout';
-import {Component, PropsWithChildren} from 'react';
-import {Team, columns, columnData} from "@/Components/Standings/Columns"
+import {PropsWithChildren} from 'react';
+import {columns, columnData} from "@/Components/Standings/Columns"
 import {DataTable} from "@/Components/DataTable"
-import {Link, router, Head} from '@inertiajs/react';
+import {Head} from '@inertiajs/react';
 import TableFilters from "@/Components/TableFilters";
-import Pagination from "@/Components/Pagination";
 import * as React from "react";
+import ContentPanel from "@/Components/ContentPanel";
 
 export default function Standings({seasons, current_season, current_division, standings}: PropsWithChildren<{
     standings: Array<any>,
@@ -19,14 +19,14 @@ export default function Standings({seasons, current_season, current_division, st
         <MainLayout header={null}>
             <Head title="Standings"/>
 
-            <div className='content'>
+            <ContentPanel>
                 <TableFilters collectionKey='standings' filters={filters} seasons={seasons} current_season={current_season}
                               current_division={current_division}/>
-            </div>
+            </ContentPanel>
 
-            <div className='content pb-0'>
+            <ContentPanel className='content pb-0'>
                 <DataTable columns={columns} data={standings} columnData={columnData}></DataTable>
-            </div>
+            </ContentPanel>
         </MainLayout>
     );
 }
