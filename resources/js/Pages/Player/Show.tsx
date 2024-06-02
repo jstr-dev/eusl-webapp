@@ -26,14 +26,12 @@ export default function Show({player, current_team}: PropsWithChildren<{
                     </div>
 
                     <div className={'rounded-b-lg bg-neutral-900'} style={{padding: '25px'}}>
-                        sanem big booty.
+                        <div className={'flex justify-center align-middle'}>
+                        </div>
                     </div>
                 </div>
 
                 <ContentPanel>
-                    <p>
-                        Sanem has a really great booty and a nice smile c:
-                    </p>
                 </ContentPanel>
             </div>
 

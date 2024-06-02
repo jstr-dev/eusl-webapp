@@ -10,6 +10,12 @@ export const columns: ColumnDef<Player>[] = [
     {
         accessorKey: "name",
         header: "Player",
+        cell: ({row}) => {
+            const name: string = row.getValue("name");
+            return (
+                <a href={'../player/' + row.original.id}>{name}</a>
+            );
+        }
     },
 
     {
@@ -17,7 +23,7 @@ export const columns: ColumnDef<Player>[] = [
         header: 'Team',
         cell: ({row}) => {
             const teams: Array<Team> = row.getValue('teams');
-            const teamName: string  = teams[0]?.name ?? 'Unknown';
+            const teamName: string = teams[0]?.name ?? 'Unknown';
             return (
                 <div>
                     {teamName}
