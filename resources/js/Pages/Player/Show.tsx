@@ -3,11 +3,22 @@ import {PropsWithChildren} from "react";
 import {Head} from "@inertiajs/react";
 import ContentPanel from "@/Components/ContentPanel";
 
+export type allTimeStatistics = {
+    goals: number,
+    assists: number,
+    saves: number,
+    period_wins: number,
+    period_losses: number,
+    period_ties: number,
+    periods: number
+}
+
 export type initialStatistics = {
     firstGame: Game | null,
     firstSeason: Season | null,
     lastGame: Game | null,
-    lastSeason: Season | null
+    lastSeason: Season | null,
+    allTimeStatistics: allTimeStatistics;
 }
 
 const getFirstGameDate = (game: Game | null) => {
@@ -17,11 +28,16 @@ const getFirstGameDate = (game: Game | null) => {
     return date;
 }
 
+const getStatisticPerPeriod = (stats: allTimeStatistics, stat: keyof allTimeStatistics) => {
+    return (stats[stat] / stats.periods).toFixed(2);
+}
+
 export default function Show({ player, current_team, initialStatistics }: PropsWithChildren<{
     player: Player,
     current_team: Team,
     initialStatistics: initialStatistics
 }>) {
+    console.log((initialStatistics.allTimeStatistics.periods));
     return (
         <MainLayout header={null}>
             <Head title={player.name}/>
@@ -41,7 +57,7 @@ export default function Show({ player, current_team, initialStatistics }: PropsW
                     </div>
 
                     <div className={'rounded-b-lg bg-neutral-900'} style={{padding: '25px'}}>
-                        <div className={'flex justify-center align-middle'}>
+                        <div className={'basic-stat-panel grid grid-cols-2 gap-4'}>
                             <div>
                                 <span>First Game:</span>
                                 <span>{getFirstGameDate(initialStatistics.firstGame)}</span>
@@ -60,6 +76,36 @@ export default function Show({ player, current_team, initialStatistics }: PropsW
                             <div>
                                 <span>Last Season:</span>
                                 <span>{initialStatistics.lastSeason ? initialStatistics.lastSeason.number : 'N/A'}</span>
+                            </div>
+
+                            <div>
+                                <span>Goals:</span>
+                                <span>{initialStatistics.allTimeStatistics.goals}</span>
+                            </div>
+
+                            <div>
+                                <span>Goals per period:</span>
+                                <span>{getStatisticPerPeriod(initialStatistics.allTimeStatistics, 'goals')}</span>
+                            </div>
+
+                            <div>
+                                <span>Assists:</span>
+                                <span>{initialStatistics.allTimeStatistics.assists}</span>
+                            </div>
+
+                            <div>
+                                <span>Assists per period:</span>
+                                <span>{getStatisticPerPeriod(initialStatistics.allTimeStatistics, 'assists')}</span>
+                            </div>
+
+                            <div>
+                                <span>Saves:</span>
+                                <span>{initialStatistics.allTimeStatistics.saves}</span>
+                            </div>
+
+                            <div>
+                                <span>Saves per period:</span>
+                                <span>{getStatisticPerPeriod(initialStatistics.allTimeStatistics, 'saves')}</span>
                             </div>
                         </div>
                     </div>

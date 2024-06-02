@@ -138,3 +138,9 @@
         grid-gap: 0;
     }
 }
+
+.basic-stat-panel {
+    div:nth-child(2n) {
+        text-align: right;
+    }
+}
