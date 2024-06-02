@@ -3,9 +3,24 @@ import {PropsWithChildren} from "react";
 import {Head} from "@inertiajs/react";
 import ContentPanel from "@/Components/ContentPanel";
 
-export default function Show({player, current_team}: PropsWithChildren<{
-    players: Player,
-    current_team: Team
+export type initialStatistics = {
+    firstGame: Game | null,
+    firstSeason: Season | null,
+    lastGame: Game | null,
+    lastSeason: Season | null
+}
+
+const getFirstGameDate = (game: Game | null) => {
+    if (game == null) return "Cannot find";
+    const date = game.date_played;
+    if (date == null) return "Cannot find";
+    return date;
+}
+
+export default function Show({ player, current_team, initialStatistics }: PropsWithChildren<{
+    player: Player,
+    current_team: Team,
+    initialStatistics: initialStatistics
 }>) {
     return (
         <MainLayout header={null}>
@@ -27,6 +42,25 @@ export default function Show({player, current_team}: PropsWithChildren<{
 
                     <div className={'rounded-b-lg bg-neutral-900'} style={{padding: '25px'}}>
                         <div className={'flex justify-center align-middle'}>
+                            <div>
+                                <span>First Game:</span>
+                                <span>{getFirstGameDate(initialStatistics.firstGame)}</span>
+                            </div>
+
+                            <div>
+                                <span>First Season:</span>
+                                <span>{initialStatistics.firstSeason ? initialStatistics.firstSeason.number : 'N/A'}</span>
+                            </div>
+
+                            <div>
+                                <span>Last Game:</span>
+                                <span>{getFirstGameDate(initialStatistics.lastGame)}</span>
+                            </div>
+
+                            <div>
+                                <span>Last Season:</span>
+                                <span>{initialStatistics.lastSeason ? initialStatistics.lastSeason.number : 'N/A'}</span>
+                            </div>
                         </div>
                     </div>
                 </div>

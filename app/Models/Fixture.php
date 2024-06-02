@@ -8,19 +8,23 @@ use Illuminate\Database\Eloquent\Model;
 
 class Fixture extends Model
 {
-    public function getSeason(): BelongsTo {
+    public function season(): BelongsTo
+    {
         return $this->belongsTo(Season::class);
     }
 
-    public function getAwayTeam(): BelongsTo {
+    public function awayTeam(): BelongsTo
+    {
         return $this->belongsTo(Team::class);
     }
 
-    public function getHomeTeam(): BelongsTo {
+    public function homeTeam(): BelongsTo
+    {
         return $this->belongsTo(Team::class);
     }
 
-    public function getGames(): HasOneOrMany {
+    public function games(): HasOneOrMany
+    {
         return $this->hasMany(Game::class);
     }
 }

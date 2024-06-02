@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Libraries\Statistics;
 use App\Http\Traits\FilterParameters;
 use App\Models\Player;
 use Illuminate\Http\Request;
@@ -42,12 +43,13 @@ class PlayerController extends Controller
         ]);
     }
 
-    public function show(Player $player)
+    public function show(Player $player, Statistics $statistics)
     {
         $current_team = $player->currentTeam();
         return Inertia::render("Player/Show", [
             'player' => $player,
             'current_team' => $current_team,
+            'initialStatistics' => $statistics->getBasicPlayerStatistics($player)
         ]);
     }
 }
