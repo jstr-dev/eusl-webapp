@@ -39,6 +39,7 @@ declare global {
     export type Season = {
         id: number,
         number: number,
-        division: string
+        division: string,
+        short: string
     }
 }

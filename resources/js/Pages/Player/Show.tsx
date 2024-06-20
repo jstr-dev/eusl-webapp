@@ -10,7 +10,8 @@ export type allTimeStatistics = {
     period_wins: number,
     period_losses: number,
     period_ties: number,
-    periods: number
+    periods: number,
+    points: number
 }
 
 export type initialStatistics = {
@@ -22,9 +23,9 @@ export type initialStatistics = {
 }
 
 const getFirstGameDate = (game: Game | null) => {
-    if (game == null) return "Cannot find";
+    if (game == null) return "N/A";
     const date = game.date_played;
-    if (date == null) return "Cannot find";
+    if (date == null) return "N/A";
     return date;
 }
 
@@ -32,12 +33,16 @@ const getStatisticPerPeriod = (stats: allTimeStatistics, stat: keyof allTimeStat
     return (stats[stat] / stats.periods).toFixed(2);
 }
 
+const getSeason = (season: Season | null) => {
+    if (season == null) return "N/A";
+    return season.number + " " + season.short;
+}
+
 export default function Show({ player, current_team, initialStatistics }: PropsWithChildren<{
     player: Player,
     current_team: Team,
     initialStatistics: initialStatistics
 }>) {
-    console.log((initialStatistics.allTimeStatistics.periods));
     return (
         <MainLayout header={null}>
             <Head title={player.name}/>
@@ -57,54 +62,64 @@ export default function Show({ player, current_team, initialStatistics }: PropsW
                     </div>
 
                     <div className={'rounded-b-lg bg-neutral-900'} style={{padding: '25px'}}>
-                        <div className={'basic-stat-panel grid grid-cols-2 gap-4'}>
-                            <div>
-                                <span>First Game:</span>
+                        <div className={'basic-stat-panel grid grid-cols-4 gap-4 u-grid'}>
+                            <div className={'u-grid_item flex flex-col'}>
+                                <span className={'text-xs font-semibold'}>First Game</span>
                                 <span>{getFirstGameDate(initialStatistics.firstGame)}</span>
                             </div>
 
-                            <div>
-                                <span>First Season:</span>
-                                <span>{initialStatistics.firstSeason ? initialStatistics.firstSeason.number : 'N/A'}</span>
-                            </div>
-
-                            <div>
-                                <span>Last Game:</span>
+                            <div className={'u-grid_item flex flex-col'}>
+                                <span className={'text-xs font-semibold'}>Last Game</span>
                                 <span>{getFirstGameDate(initialStatistics.lastGame)}</span>
                             </div>
 
-                            <div>
-                                <span>Last Season:</span>
-                                <span>{initialStatistics.lastSeason ? initialStatistics.lastSeason.number : 'N/A'}</span>
+                            <div className={'u-grid_item flex flex-col'}>
+                                <span className={'text-xs font-semibold'}>First Season</span>
+                                <span>{getSeason(initialStatistics.firstSeason)}</span>
                             </div>
 
-                            <div>
-                                <span>Goals:</span>
+                            <div className={'u-grid_item flex flex-col'}>
+                                <span className={'text-xs font-semibold'}>Last Season</span>
+                                <span>{getSeason(initialStatistics.lastSeason)}</span>
+                            </div>
+
+                            <div className={'u-grid_item flex flex-col'}>
+                                <span className={'text-xs font-semibold'}>Goals</span>
                                 <span>{initialStatistics.allTimeStatistics.goals}</span>
                             </div>
 
-                            <div>
-                                <span>Goals per period:</span>
-                                <span>{getStatisticPerPeriod(initialStatistics.allTimeStatistics, 'goals')}</span>
+                            <div className={'u-grid_item flex flex-col'}>
+                                <span className={'text-xs font-semibold'}>Points</span>
+                                <span>{initialStatistics.allTimeStatistics.points}</span>
                             </div>
 
-                            <div>
-                                <span>Assists:</span>
+                            <div className={'u-grid_item flex flex-col'}>
+                                <span className={'text-xs font-semibold'}>Assists</span>
                                 <span>{initialStatistics.allTimeStatistics.assists}</span>
                             </div>
 
-                            <div>
-                                <span>Assists per period:</span>
-                                <span>{getStatisticPerPeriod(initialStatistics.allTimeStatistics, 'assists')}</span>
-                            </div>
-
-                            <div>
-                                <span>Saves:</span>
+                            <div className={'u-grid_item flex flex-col'}>
+                                <span className={'text-xs font-semibold'}>Saves</span>
                                 <span>{initialStatistics.allTimeStatistics.saves}</span>
                             </div>
 
-                            <div>
-                                <span>Saves per period:</span>
+                            <div className={'u-grid_item flex flex-col'}>
+                                <span className={'text-xs font-semibold'}>Goals per period</span>
+                                <span>{getStatisticPerPeriod(initialStatistics.allTimeStatistics, 'goals')}</span>
+                            </div>
+
+                            <div className={'u-grid_item flex flex-col'}>
+                                <span className={'text-xs font-semibold'}>Points per period</span>
+                                <span>{getStatisticPerPeriod(initialStatistics.allTimeStatistics, 'points')}</span>
+                            </div>
+
+                            <div className={'u-grid_item flex flex-col'}>
+                                <span className={'text-xs font-semibold'}>Assists per period</span>
+                                <span>{getStatisticPerPeriod(initialStatistics.allTimeStatistics, 'assists')}</span>
+                            </div>
+
+                            <div className={'u-grid_item flex flex-col'}>
+                                <span className={'text-xs font-semibold'}>Saves per period</span>
                                 <span>{getStatisticPerPeriod(initialStatistics.allTimeStatistics, 'saves')}</span>
                             </div>
                         </div>

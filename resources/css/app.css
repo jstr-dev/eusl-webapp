@@ -139,8 +139,12 @@
     }
 }
 
-.basic-stat-panel {
-    div:nth-child(2n) {
-        text-align: right;
-    }
+.u-grid_item {
+    text-align: center;
+    flex-direction: column-reverse;
+    gap: 0.3em;
+}
+
+.u-grid_item .text-xs {
+    color: grey;
 }

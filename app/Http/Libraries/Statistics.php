@@ -23,8 +23,10 @@ class Statistics
             'period_losses',
             'period_ties',
         ]);
+
         $allTimeStatistics['assists'] = $allTimeStatistics['primary_assists'] + $allTimeStatistics['secondary_assists'];
         $allTimeStatistics['periods'] = $allTimeStatistics['period_wins'] + $allTimeStatistics['period_losses'] + $allTimeStatistics['period_ties'];
+        $allTimeStatistics['points'] = $allTimeStatistics['goals'] + $allTimeStatistics['assists'];
 
         return compact('firstGame', 'firstSeason', 'lastGame', 'lastSeason', 'allTimeStatistics');
     }
