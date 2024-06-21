@@ -45,11 +45,16 @@ class PlayerController extends Controller
 
     public function show(Player $player, Statistics $statistics)
     {
+        $teams = $player->playerToTeams;
+        $teams->load('team');
+        $teams->load('season');
+
         $current_team = $player->currentTeam();
         return Inertia::render("Player/Show", [
             'player' => $player,
             'current_team' => $current_team,
-            'initialStatistics' => $statistics->getBasicPlayerStatistics($player)
+            'initialStatistics' => $statistics->getBasicPlayerStatistics($player),
+            'teams' => $teams
         ]);
     }
 }

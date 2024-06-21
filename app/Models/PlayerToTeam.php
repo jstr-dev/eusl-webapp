@@ -18,4 +18,9 @@ class PlayerToTeam extends Model
     {
         return $this->belongsTo(Player::class);
     }
+
+    public function season(): BelongsTo
+    {
+        return $this->belongsTo(Season::class);
+    }
 }

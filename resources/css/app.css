@@ -146,5 +146,14 @@
 }
 
 .u-grid_item .text-xs {
-    color: grey;
+    color: theme("colors.neutral.500");
+}
+
+hr {
+    border-color: theme("colors.neutral.700");
+}
+
+.ignore-content-padding {
+    margin-left: -25px;
+    margin-right: -25px;
 }

@@ -2,6 +2,7 @@ import MainLayout from '@/Layouts/MainLayout';
 import {PropsWithChildren} from "react";
 import {Head} from "@inertiajs/react";
 import ContentPanel from "@/Components/ContentPanel";
+import Teams from './Components/Teams';
 
 export type allTimeStatistics = {
     goals: number,
@@ -38,10 +39,11 @@ const getSeason = (season: Season | null) => {
     return season.number + " " + season.short;
 }
 
-export default function Show({ player, current_team, initialStatistics }: PropsWithChildren<{
+export default function Show({ player, current_team, initialStatistics, teams }: PropsWithChildren<{
     player: Player,
     current_team: Team,
-    initialStatistics: initialStatistics
+    initialStatistics: initialStatistics,
+    teams: PlayerToTeam[],
 }>) {
     return (
         <MainLayout header={null}>
@@ -126,8 +128,7 @@ export default function Show({ player, current_team, initialStatistics }: PropsW
                     </div>
                 </div>
 
-                <ContentPanel>
-                </ContentPanel>
+                <Teams teams={teams} />
             </div>
 
         </MainLayout>

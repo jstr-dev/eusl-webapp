@@ -21,7 +21,19 @@ declare global {
         home_primary_color: string,
         home_secondary_color: string,
         away_primary_color: string,
-        away_secondary_color: string,
+        away_secondary_color: string
+    }
+
+    export type PlayerToTeam = {
+        id: number,
+        player_id: number,
+        season_id: number,
+        team_id: number,
+        is_gm: number,
+        position: string | null,
+        player: Player | null,
+        team: Team | null,
+        season: Season | null
     }
 
     export type Game = {

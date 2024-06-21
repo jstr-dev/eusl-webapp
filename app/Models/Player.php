@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Player extends Model
 {
@@ -15,6 +17,11 @@ class Player extends Model
     public function currentTeam(): Team
     {
         return $this->teams()->orderBy('season_id')->first();
+    }
+
+    public function playerToTeams(): HasMany
+    {
+        return $this->hasMany(PlayerToTeam::class, 'player_id', 'id');
     }
 
     private function getFirstLastGame(string $sortOrder): Game
