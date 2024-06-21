@@ -146,7 +146,7 @@
 }
 
 .u-grid_item .text-xs {
-    color: theme("colors.neutral.500");
+    color: theme("colors.neutral.400");
 }
 
 hr {
