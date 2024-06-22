@@ -28,7 +28,7 @@ export default function Seasons({ children, teams, placements }: PropsWithChildr
         <ContentPanel title={'Career'}>
             <div className="flex flex-col gap-2">
                 {teams.map(team => (
-                    <a className='flex justify-between hover:bg-neutral-800 p-2 rounded-sm' href='https://www.google.com/'>
+                    <a className='flex justify-between hover:bg-neutral-800 p-2 rounded-sm' href={'/team/' + team.team?.id}>
                         <div className='flex gap-3 items-center'>
                             <img src={"/storage/images/logo.png"} width='32px' style={{marginRight: '10px'}}></img>
                             <div className='flex flex-col gap-1'>
