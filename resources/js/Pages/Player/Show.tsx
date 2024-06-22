@@ -39,11 +39,12 @@ const getSeason = (season: Season | null) => {
     return season.number + " " + season.short;
 }
 
-export default function Show({ player, current_team, initialStatistics, teams }: PropsWithChildren<{
+export default function Show({ player, current_team, initialStatistics, teams, placements }: PropsWithChildren<{
     player: Player,
     current_team: Team,
     initialStatistics: initialStatistics,
     teams: PlayerToTeam[],
+    placements: Object
 }>) {
     return (
         <MainLayout header={null}>
@@ -128,7 +129,7 @@ export default function Show({ player, current_team, initialStatistics, teams }:
                     </div>
                 </div>
 
-                <Teams teams={teams} />
+                <Teams teams={teams} placements={placements} />
             </div>
 
         </MainLayout>

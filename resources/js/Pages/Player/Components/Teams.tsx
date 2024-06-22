@@ -1,7 +1,29 @@
 import ContentPanel from "@/Components/ContentPanel";
 import { PropsWithChildren } from "react";
 
-export default function Seasons({ children, teams }: PropsWithChildren<{ teams: PlayerToTeam[] }>) {
+const nthNumber = (number: number) => {
+    if (number > 3 && number < 21) return "th";
+    switch (number % 10) {
+        case 1:
+            return "st";
+        case 2:
+            return "nd";
+        case 3:
+            return "rd";
+        default:
+            return "th";
+    }
+};
+
+const getPlacement = (placements: any, season_id: number) => {
+    if (placements.hasOwnProperty(season_id)) {
+        return placements[season_id] + nthNumber(placements[season_id]);
+    }
+
+    return "N/A";
+}
+
+export default function Seasons({ children, teams, placements }: PropsWithChildren<{ teams: PlayerToTeam[], placements: Object }>) {
     return (<>
         <ContentPanel title={'Career'}>
             <div className="flex flex-col gap-2">
@@ -16,8 +38,8 @@ export default function Seasons({ children, teams }: PropsWithChildren<{ teams: 
                         </div>
 
                         <div className='flex flex-col text-center gap-1'>
-                            <span className='text-sm'>1st</span>
-                            <span className='text-xs text-neutral-400'>Finished</span>
+                            <span className='text-sm'>{getPlacement(placements, team.season_id)}</span>
+                            <span className='font-semibold text-xs text-neutral-400'>Finished</span>
                         </div>
                     </a>
                 ))}
