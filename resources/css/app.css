@@ -119,23 +119,22 @@
     height: 5px;
 }
 
-.contentGrid {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    grid-gap: 20px;
-    align-items: start;
-}
-
 @media screen and (max-width: 1280px) {
-    .content {
+    .content, .content-media-screen-wrapper {
         margin-left: 15px;
         margin-right: 15px;
     }
 
-    .contentGrid {
-        display: grid;
-        grid-template-columns: 1fr;
-        grid-gap: 0;
+    .left-right-flex {
+        flex-direction: column;
+    }
+
+    .left {
+        width: 100%;
+    }
+
+    .right {
+        width: 100%;
     }
 }
 

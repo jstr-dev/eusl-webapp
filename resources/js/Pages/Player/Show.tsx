@@ -50,9 +50,9 @@ export default function Show({ player, current_team, initialStatistics, teams, p
         <MainLayout header={null}>
             <Head title={player.name}/>
 
-            <div className='flex flex-row w-full gap-4'>
+            <div className='flex flex-row w-full gap-4 left-right-flex'>
                 <div className='left flex flex-col w-2/3 gap-4'>
-                    <div>
+                    <div className='content-media-screen-wrapper'>
                         <div
                             className={'flex rounded-t-lg gap-5'}
                             style={{backgroundColor: "#" + current_team.home_primary_color, padding: '25px'}}>
