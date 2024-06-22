@@ -16,7 +16,12 @@ class Player extends Model
 
     public function currentTeam(): Team
     {
-        return $this->teams()->orderBy('season_id')->first();
+        $teams = $this->playerToTeams;
+        $teams = $teams->sort(function ($a, $b) {
+            return $b->season->number - $a->season->number;
+        });
+
+        return $teams->first()->team ?? null;
     }
 
     public function playerToTeams(): HasMany

@@ -24,6 +24,8 @@ const getPlacement = (placements: any, season_id: number) => {
 }
 
 export default function Seasons({ children, teams, placements }: PropsWithChildren<{ teams: PlayerToTeam[], placements: Object }>) {
+    teams.sort((a, b) => b.season.number - a.season.number);
+
     return (<>
         <ContentPanel title={'Career'}>
             <div className="flex flex-col gap-2">

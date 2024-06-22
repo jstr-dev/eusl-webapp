@@ -32,8 +32,8 @@ declare global {
         is_gm: number,
         position: string | null,
         player: Player | null,
-        team: Team | null,
-        season: Season | null
+        team: Team,
+        season: Season
     }
 
     export type Game = {
