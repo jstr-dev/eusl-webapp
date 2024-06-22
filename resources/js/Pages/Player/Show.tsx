@@ -50,86 +50,94 @@ export default function Show({ player, current_team, initialStatistics, teams, p
         <MainLayout header={null}>
             <Head title={player.name}/>
 
-            <div className='contentGrid'>
-                <div>
-                    <div
-                        className={'flex rounded-t-lg gap-5'}
-                        style={{backgroundColor: "#" + current_team.home_primary_color, padding: '25px'}}>
+            <div className='flex flex-row w-full gap-4'>
+                <div className='left flex flex-col w-2/3 gap-4'>
+                    <div>
+                        <div
+                            className={'flex rounded-t-lg gap-5'}
+                            style={{backgroundColor: "#" + current_team.home_primary_color, padding: '25px'}}>
 
-                        <img alt='Team logo' src={"/storage/images/logo_oga.png"} width='64px' height='64px'/>
+                            <img alt='Team logo' src={"/storage/images/logo_oga.png"} width='64px' height='64px'/>
 
-                        <div>
-                            <p className='text-3xl'>{player.name}</p>
-                            <a className='text-xl' href={'../team/' + current_team.id}>{current_team.name}</a>
+                            <div>
+                                <p className='text-3xl'>{player.name}</p>
+                                <a className='text-xl' href={'../team/' + current_team.id}>{current_team.name}</a>
+                            </div>
+                        </div>
+
+                        <div className={'rounded-b-lg bg-neutral-900'} style={{padding: '25px'}}>
+                            <div className={'basic-stat-panel grid grid-cols-4 gap-4 u-grid'}>
+                                <div className={'u-grid_item flex flex-col'}>
+                                    <span className={'text-xs font-semibold'}>First Game</span>
+                                    <span>{getFirstGameDate(initialStatistics.firstGame)}</span>
+                                </div>
+
+                                <div className={'u-grid_item flex flex-col'}>
+                                    <span className={'text-xs font-semibold'}>Last Game</span>
+                                    <span>{getFirstGameDate(initialStatistics.lastGame)}</span>
+                                </div>
+
+                                <div className={'u-grid_item flex flex-col'}>
+                                    <span className={'text-xs font-semibold'}>First Season</span>
+                                    <span>{getSeason(initialStatistics.firstSeason)}</span>
+                                </div>
+
+                                <div className={'u-grid_item flex flex-col'}>
+                                    <span className={'text-xs font-semibold'}>Last Season</span>
+                                    <span>{getSeason(initialStatistics.lastSeason)}</span>
+                                </div>
+
+                                <div className={'u-grid_item flex flex-col'}>
+                                    <span className={'text-xs font-semibold'}>Goals</span>
+                                    <span>{initialStatistics.allTimeStatistics.goals}</span>
+                                </div>
+
+                                <div className={'u-grid_item flex flex-col'}>
+                                    <span className={'text-xs font-semibold'}>Points</span>
+                                    <span>{initialStatistics.allTimeStatistics.points}</span>
+                                </div>
+
+                                <div className={'u-grid_item flex flex-col'}>
+                                    <span className={'text-xs font-semibold'}>Assists</span>
+                                    <span>{initialStatistics.allTimeStatistics.assists}</span>
+                                </div>
+
+                                <div className={'u-grid_item flex flex-col'}>
+                                    <span className={'text-xs font-semibold'}>Saves</span>
+                                    <span>{initialStatistics.allTimeStatistics.saves}</span>
+                                </div>
+
+                                <div className={'u-grid_item flex flex-col'}>
+                                    <span className={'text-xs font-semibold'}>Goals per period</span>
+                                    <span>{getStatisticPerPeriod(initialStatistics.allTimeStatistics, 'goals')}</span>
+                                </div>
+
+                                <div className={'u-grid_item flex flex-col'}>
+                                    <span className={'text-xs font-semibold'}>Points per period</span>
+                                    <span>{getStatisticPerPeriod(initialStatistics.allTimeStatistics, 'points')}</span>
+                                </div>
+
+                                <div className={'u-grid_item flex flex-col'}>
+                                    <span className={'text-xs font-semibold'}>Assists per period</span>
+                                    <span>{getStatisticPerPeriod(initialStatistics.allTimeStatistics, 'assists')}</span>
+                                </div>
+
+                                <div className={'u-grid_item flex flex-col'}>
+                                    <span className={'text-xs font-semibold'}>Saves per period</span>
+                                    <span>{getStatisticPerPeriod(initialStatistics.allTimeStatistics, 'saves')}</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
-                    <div className={'rounded-b-lg bg-neutral-900'} style={{padding: '25px'}}>
-                        <div className={'basic-stat-panel grid grid-cols-4 gap-4 u-grid'}>
-                            <div className={'u-grid_item flex flex-col'}>
-                                <span className={'text-xs font-semibold'}>First Game</span>
-                                <span>{getFirstGameDate(initialStatistics.firstGame)}</span>
-                            </div>
+                    <ContentPanel title={'Statistics'}>
 
-                            <div className={'u-grid_item flex flex-col'}>
-                                <span className={'text-xs font-semibold'}>Last Game</span>
-                                <span>{getFirstGameDate(initialStatistics.lastGame)}</span>
-                            </div>
-
-                            <div className={'u-grid_item flex flex-col'}>
-                                <span className={'text-xs font-semibold'}>First Season</span>
-                                <span>{getSeason(initialStatistics.firstSeason)}</span>
-                            </div>
-
-                            <div className={'u-grid_item flex flex-col'}>
-                                <span className={'text-xs font-semibold'}>Last Season</span>
-                                <span>{getSeason(initialStatistics.lastSeason)}</span>
-                            </div>
-
-                            <div className={'u-grid_item flex flex-col'}>
-                                <span className={'text-xs font-semibold'}>Goals</span>
-                                <span>{initialStatistics.allTimeStatistics.goals}</span>
-                            </div>
-
-                            <div className={'u-grid_item flex flex-col'}>
-                                <span className={'text-xs font-semibold'}>Points</span>
-                                <span>{initialStatistics.allTimeStatistics.points}</span>
-                            </div>
-
-                            <div className={'u-grid_item flex flex-col'}>
-                                <span className={'text-xs font-semibold'}>Assists</span>
-                                <span>{initialStatistics.allTimeStatistics.assists}</span>
-                            </div>
-
-                            <div className={'u-grid_item flex flex-col'}>
-                                <span className={'text-xs font-semibold'}>Saves</span>
-                                <span>{initialStatistics.allTimeStatistics.saves}</span>
-                            </div>
-
-                            <div className={'u-grid_item flex flex-col'}>
-                                <span className={'text-xs font-semibold'}>Goals per period</span>
-                                <span>{getStatisticPerPeriod(initialStatistics.allTimeStatistics, 'goals')}</span>
-                            </div>
-
-                            <div className={'u-grid_item flex flex-col'}>
-                                <span className={'text-xs font-semibold'}>Points per period</span>
-                                <span>{getStatisticPerPeriod(initialStatistics.allTimeStatistics, 'points')}</span>
-                            </div>
-
-                            <div className={'u-grid_item flex flex-col'}>
-                                <span className={'text-xs font-semibold'}>Assists per period</span>
-                                <span>{getStatisticPerPeriod(initialStatistics.allTimeStatistics, 'assists')}</span>
-                            </div>
-
-                            <div className={'u-grid_item flex flex-col'}>
-                                <span className={'text-xs font-semibold'}>Saves per period</span>
-                                <span>{getStatisticPerPeriod(initialStatistics.allTimeStatistics, 'saves')}</span>
-                            </div>
-                        </div>
-                    </div>
+                    </ContentPanel>
                 </div>
 
-                <Teams teams={teams} placements={placements} />
+                <div className='flex flex-col gap-4 right w-1/3'>
+                    <Teams teams={teams} placements={placements} />
+                </div>
             </div>
 
         </MainLayout>

@@ -1,6 +1,6 @@
 import {PropsWithChildren} from "react";
 
-export default function ContentPanel({ children, title }: PropsWithChildren<{ title: string | null }>) {
+export default function ContentPanel({ children, title }: PropsWithChildren<{ title: string | null | undefined }>) {
     return (<>
         <div className='content rounded-lg'>
             {title &&
