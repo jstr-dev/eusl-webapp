@@ -23,16 +23,18 @@ export default function Players({players, seasons, current_season, current_divis
         <MainLayout header={null}>
             <Head title="Players"/>
 
-            <ContentPanel>
-                <TableFilters collectionKey='players' filters={filters} seasons={seasons} current_season={current_season}
-                              current_division={current_division}/>
-            </ContentPanel>
+            <div className='flex flex-col gap-4'>
+                <ContentPanel>
+                    <TableFilters collectionKey='players' filters={filters} seasons={seasons} current_season={current_season}
+                                current_division={current_division}/>
+                </ContentPanel>
 
-            <div className='content pb-0 rounded-lg'>
-                <DataTable columns={columns} data={players}></DataTable>
-                <div>
-                    <hr className='border-neutral-800 mt-5 mb-5'/>
-                    <Pagination currentPage={page} maxPage={max_pages} total={total} collectionKey={'players'}></Pagination>
+                <div className='content pb-0 rounded-lg'>
+                    <DataTable columns={columns} data={players}></DataTable>
+                    <div>
+                        <hr className='border-neutral-800 mt-5 mb-5'/>
+                        <Pagination currentPage={page} maxPage={max_pages} total={total} collectionKey={'players'}></Pagination>
+                    </div>
                 </div>
             </div>
         </MainLayout>

@@ -19,14 +19,16 @@ export default function Standings({seasons, current_season, current_division, st
         <MainLayout header={null}>
             <Head title="Standings"/>
 
-            <ContentPanel>
-                <TableFilters collectionKey='standings' filters={filters} seasons={seasons} current_season={current_season}
-                              current_division={current_division}/>
-            </ContentPanel>
+            <div className='flex flex-col gap-4'>
+                <ContentPanel>
+                    <TableFilters collectionKey='standings' filters={filters} seasons={seasons} current_season={current_season}
+                                current_division={current_division}/>
+                </ContentPanel>
 
-            <ContentPanel className='content pb-0'>
-                <DataTable columns={columns} data={standings} columnData={columnData}></DataTable>
-            </ContentPanel>
+                <ContentPanel>
+                    <DataTable columns={columns} data={standings} columnData={columnData}></DataTable>
+                </ContentPanel>
+            </div>
         </MainLayout>
     );
 }

@@ -23,16 +23,18 @@ export default function Teams({teams, seasons, current_season, current_division,
         <MainLayout header={null}>
             <Head title="Teams"/>
 
-            <ContentPanel>
-                <TableFilters collectionKey='teams' filters={filters} seasons={seasons} current_season={current_season}
-                              current_division={current_division}/>
-            </ContentPanel>
+            <div className='flex flex-col gap-4'>
+                <ContentPanel>
+                    <TableFilters collectionKey='teams' filters={filters} seasons={seasons} current_season={current_season}
+                        current_division={current_division} />
+                </ContentPanel>
 
-            <div className='content rounded-lg pb-0'>
-                <DataTable columns={columns} data={teams}></DataTable>
-                <div>
-                    <hr className='border-neutral-800 mt-5 mb-5'/>
-                    <Pagination collectionKey={'teams'} currentPage={page} maxPage={max_pages} total={total}></Pagination>
+                <div className='content rounded-lg pb-0'>
+                    <DataTable columns={columns} data={teams}></DataTable>
+                    <div>
+                        <hr className='border-neutral-800 mt-5 mb-5' />
+                        <Pagination collectionKey={'teams'} currentPage={page} maxPage={max_pages} total={total}></Pagination>
+                    </div>
                 </div>
             </div>
         </MainLayout>

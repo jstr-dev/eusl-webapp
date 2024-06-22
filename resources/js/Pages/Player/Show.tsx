@@ -137,6 +137,10 @@ export default function Show({ player, current_team, initialStatistics, teams, p
 
                 <div className='flex flex-col gap-4 right w-1/3'>
                     <Teams teams={teams} placements={placements} />
+
+                    <ContentPanel title={'Achievements'}>
+                        No achievements recorded yet!
+                    </ContentPanel>
                 </div>
             </div>
 
