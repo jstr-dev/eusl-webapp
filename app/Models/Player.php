@@ -9,6 +9,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Player extends Model
 {
+    protected $fillable = ['name', 'slapshot_id'];
+
     public function teams(): BelongsToMany
     {
         return $this->belongsToMany(Team::class, 'player_to_team', 'player_id', 'team_id');

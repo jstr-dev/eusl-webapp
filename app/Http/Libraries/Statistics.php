@@ -4,6 +4,7 @@ namespace App\Http\Libraries;
 
 use App\Models\GameStatistics;
 use App\Models\Player;
+use App\Models\Season;
 use Cache;
 use DB;
 
@@ -93,5 +94,10 @@ class Statistics
             ) tbl
             ORDER BY points DESC, games, forfeits, (wins + ot_wins) DESC, wins DESC, goal_difference DESC, goals_for DESC
         "));
+    }
+
+    public function getDetailedPlayerStatistics(Player &$player, Season $season, array $includes, array $options): array
+    {
+        return [];
     }
 }
